@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setNotes, notes }) => {
-  const navigate = useNavigate(); // initialize navigate function
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setNoteText(prev => ({
@@ -10,22 +10,32 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
       [event.target.name]: event.target.value
     }));
   }
+
+  function updateLocalStorage(updatedNotes) {
+    localStorage.setItem('savedNotes', JSON.stringify(updatedNotes));
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
+    let updatedNotes;
+
     if (editingIndex !== null) {
-      const updatedNotes = notes.map((note, index) =>
+      updatedNotes = notes.map((note, index) =>
         index === editingIndex ? noteText : note
       );
       setNotes(updatedNotes);
       setEditingIndex(null);
     } else {
-      setNotes(prevNotes => [...prevNotes, noteText]);
+      updatedNotes = [...notes, noteText];
+      setNotes(updatedNotes);
     }
+
+    updateLocalStorage(updatedNotes); 
 
     setNoteText({ header: "", note: "" });
 
-    navigate('/'); // navigate to home page
+    navigate('/');
   }
 
   return (
@@ -45,7 +55,7 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
         placeholder='type note here...'
         value={noteText.note}
         onChange={handleChange}
-        autocapitalize="sentences"
+        autoCapitalize="sentences"
       ></textarea>
       <input
         type='submit'
@@ -57,7 +67,7 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
           padding: "5px",
           cursor: 'pointer',
           background: "transparent"
-                }}
+        }}
       />
     </form>
   );

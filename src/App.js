@@ -11,10 +11,10 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    const stored = localStorage.getItem('notes');
-    if (stored) setNotes(JSON.parse(stored));
-  }, []);
+  // useEffect(() => {
+  //   const stored = localStorage.getItem('notes');
+  //   if (stored) setNotes(JSON.parse(stored));
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
@@ -25,7 +25,13 @@ const App = () => {
     note.header.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
+  
+  useEffect(() => {
+    const saved = localStorage.getItem('savedNotes');
+    if (saved) {
+      setNotes(JSON.parse(saved));
+    }
+  }, []);
 
   return (
     <HashRouter>
