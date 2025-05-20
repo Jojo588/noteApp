@@ -5,14 +5,14 @@ const Header = ({searchTerm, setSearchTerm}) => {
   return (
     
     <>
-    <div className='HomeHeader' style={{display:"flex", justifyContent: "space-between"}}>
+    <div className='HomeHeader' style={{display:"flex", justifyContent: "space-between" ,width:'100%', padding:'10px'}}>
     <h2 style={{textTransform:"capitalize"}}>
       note pad
     </h2>
     <input
         type="text"
-        className='serach'
-        placeholder="Search by header..."
+        className='search'
+        placeholder="Search note by header..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{

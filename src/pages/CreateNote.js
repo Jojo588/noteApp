@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setNotes, notes }) => {
   const navigate = useNavigate();
@@ -39,7 +40,17 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
   }
 
   return (
+    <div style={{margin:'0px 20px'}}>
+     
     <form onSubmit={handleSubmit}>
+      <div style={{display:'flex', gap:"20px", borderBottom: "2px solid black"}}>
+       
+      <Link to="/" style={{textDecoration:'none'}}><div style={{fontSize: "40px", fontWeight: 'bolder', cursor: 'pointer', color: 'black', marginTop:'-10px'}} title='return to home page'
+      className='back'>&lt;
+        </div></Link>
+
+
+
       <input
         id='topic'
         type='text'
@@ -49,6 +60,7 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
         onChange={handleChange}
         required
       />
+      </div>
       <br />
       <textarea
         name="note"
@@ -59,7 +71,7 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
       ></textarea>
       <input
         type='submit'
-        value={editingIndex !== null ? 'Update Note' : 'Add Note'}
+        value={editingIndex !== null ? 'Update Note' : 'Save Note'}
         style={{
           fontSize: "20px",
           textTransform: "capitalize",
@@ -68,8 +80,10 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
           cursor: 'pointer',
           background: "transparent"
         }}
+        className='submit'
       />
     </form>
+    </div>
   );
 };
 

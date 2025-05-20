@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import Layout from './componets/Layout.js';
 import CreateNote from './pages/CreateNote.js';
 import Home from './pages/Home.js';
+import NoPage from './pages/NoPage.js'
 
 const App = () => {
   const [noteText, setNoteText] = useState({ header: "", note: "" });
@@ -11,10 +11,6 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // useEffect(() => {
-  //   const stored = localStorage.getItem('notes');
-  //   if (stored) setNotes(JSON.parse(stored));
-  // }, []);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
@@ -36,9 +32,7 @@ const App = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path='/' element={
-          <Layout
-          setNoteText ={setNoteText} />}>
+
           <Route
             index
             element={
@@ -68,7 +62,7 @@ const App = () => {
               />
             }
           />
-        </Route>
+          <Route path='*' element={<NoPage />}/>
       </Routes>
     </HashRouter>
   );
