@@ -18,9 +18,7 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
 
   function handleSubmit(event) {
     event.preventDefault();
-
     let updatedNotes;
-
     if (editingIndex !== null) {
       updatedNotes = notes.map((note, index) =>
         index === editingIndex ? noteText : note
@@ -31,11 +29,8 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
       updatedNotes = [...notes, noteText];
       setNotes(updatedNotes);
     }
-
     updateLocalStorage(updatedNotes); 
-
     setNoteText({ header: "", note: "" });
-
     navigate('/');
   }
 
@@ -48,8 +43,6 @@ const CreateNote = ({ noteText, setNoteText, editingIndex, setEditingIndex, setN
       <Link to="/" style={{textDecoration:'none'}}><div style={{fontSize: "40px", fontWeight: 'bolder', cursor: 'pointer', color: 'black', marginTop:'-10px'}} title='return to home page'
       className='back'>&lt;
         </div></Link>
-
-
 
       <input
         id='topic'

@@ -6,11 +6,14 @@ import Home from './pages/Home.js';
 import NoPage from './pages/NoPage.js'
 
 const App = () => {
-  const [noteText, setNoteText] = useState({ header: "", note: "" });
+  const [noteText, setNoteText] = useState(
+    {
+       header: "", note: "" 
+    }
+  );
   const [editingIndex, setEditingIndex] = useState(null);
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
@@ -32,7 +35,6 @@ const App = () => {
   return (
     <HashRouter>
       <Routes>
-
           <Route
             index
             element={
