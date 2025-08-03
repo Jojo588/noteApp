@@ -17,7 +17,6 @@ const Header = ({searchTerm, setSearchTerm}) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{
           padding: '8px',
-          width: '40%',
           marginBottom: '10px',
           fontSize: '16px',
           borderRadius: '8px',
